@@ -47,7 +47,7 @@ class AboutConstants < EdgeCase::Koan
   end
 
   def test_subclasses_inherit_constants_from_parent_classes
-    assert_equal __, Reptile.new.legs_in_reptile
+    assert_equal 4, Reptile.new.legs_in_reptile
   end
 
   # ------------------------------------------------------------------
@@ -63,7 +63,7 @@ class AboutConstants < EdgeCase::Koan
   end
 
   def test_who_wins_with_both_nested_and_inherited_constants
-    assert_equal __, MyAnimals::Bird.new.legs_in_bird
+    assert_equal 2, MyAnimals::Bird.new.legs_in_bird
   end
 
   # QUESTION: Which has precedence: The constant in the lexical scope,
