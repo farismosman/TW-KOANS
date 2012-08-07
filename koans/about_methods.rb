@@ -36,12 +36,12 @@ class AboutMethods < EdgeCase::Koan
     exception = assert_raise(ArgumentError) do
       my_global_method
     end
-    assert_match(/wrong.*/, exception.message)
+    assert_match(/0 for 2/, exception.message)
 
     exception = assert_raise(ArgumentError) do
       my_global_method(1,2,3)
     end
-    assert_match(/wrong.*/, exception.message)
+    assert_match(/3 for 2/, exception.message)
   end
 
   # ------------------------------------------------------------------
@@ -120,7 +120,7 @@ class AboutMethods < EdgeCase::Koan
     exception = assert_raise(NoMethodError) do
       self.my_private_method
     end
-    assert_match /.*called.*/, exception.message
+    assert_match /private method .* called/, exception.message
   end
 
   # ------------------------------------------------------------------
