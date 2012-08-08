@@ -14,25 +14,19 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  a, b, c = edges = [a, b, c].sort
   
-  if  a <= 0 or b <= 0 or c <= 0  
-	  raise TriangleError, "Triangle side must be positive"
-  end
+  raise TriangleError, "Triangle side must be positive" if a <= 0
+  raise TriangleError, "The sum of two sides must be greater than the third." if a+b <= c
   
-  if a+b <= c or a+c <= b or b+c <= a
-  	raise TriangleError, " The sum of two sides must be greater than the third."
-  	
-  end
-  
-  if a == b and b == c
+  unique_edges = edges.uniq.count
+  if unique_edges == 1
   	return :equilateral
-  elsif a == b or b==c or a==c
+  elsif unique_edges == 2
   	return :isosceles
   else
   	return :scalene
-  end 
-  
-   
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
