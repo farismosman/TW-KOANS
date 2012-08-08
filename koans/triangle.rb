@@ -15,13 +15,24 @@
 #
 def triangle(a, b, c)
   
+  if  a <= 0 or b <= 0 or c <= 0  
+	  raise TriangleError, "Triangle side must be positive"
+  end
+  
+  if a+b <= c or a+c <= b or b+c <= a
+  	raise TriangleError, " The sum of two sides must be greater than the third."
+  	
+  end
+  
   if a == b and b == c
   	return :equilateral
   elsif a == b or b==c or a==c
   	return :isosceles
   else
   	return :scalene
-  end  
+  end 
+  
+   
 end
 
 # Error class used in part 2.  No need to change this code.
