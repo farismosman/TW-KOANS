@@ -32,14 +32,13 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
 	result = 0
-	normal_score_of_numbers = [0, 100, 0, 0, 0, 50, 0]
-	score_of_triple_numbers = [100, 1000, 100, 100, 100, 100, 100]
-	
-	for number in 1..6
+
+	(1..6).each do |number| 
 		quotient = dice.count(number) / 3
-		remainder = dice.count(number) % 3		
-		result += normal_score_of_numbers[number] * remainder 
-		result += score_of_triple_numbers[number] * quotient * number 
+		remainder = dice.count(number) % 3
+ 		result += 100 * remainder if number == 1
+ 		result += 50 * remainder if number == 5
+ 		result += (number == 1 ? 1000 : 100) * quotient * number		
 	end
 	
 	return result
