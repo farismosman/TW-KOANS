@@ -29,50 +29,26 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 #
 # Your goal is to write the score method.
 
+
 def score(dice)
-  # You need to write this method
-  result = 0
-  score_of_5 = 50
-  score_of_1 = 100
-   
-  result = result + score_per_number(dice, 5, score_of_5)
-  result = result + score_per_number(dice, 1, score_of_1)
-  
-  return result
-  
-end
-
-def score_per_number(dice, number, score_of_number)
-  num = 0
-  dice.each{|d| num +=1 if d == number}     
-  result = num * score_of_number  
-  result = 1000 if num == 3 and  number ==1
-  return result
-end
-
-def  number_of_element_in_dice(dice)
+	result = 0
+	normal_score_of_numbers = [0, 100, 0, 0, 0, 50, 0]
+	score_of_triple_numbers = [100, 1000, 100, 100, 100, 100, 100]
 	
-	dice_uniq= dice.uniq
-	num = []
-	dice_uniq.each{|x| num << dice.count(x) }
-	return num
+	for number in 1..6
+		quotient = dice.count(number) / 3
+		remainder = dice.count(number) % 3		
+		result += normal_score_of_numbers[number] * remainder 
+		result += score_of_triple_numbers[number] * quotient * number 
+	end
+	
+	return result
 
 end
+
 
 class AboutScoringProject < EdgeCase::Koan
-
  
-#    +++++++++++++++++++++++++ OUR TEST ++++++++++++++++++++++
-
- def test_number_of_element_in_dice
- 	assert_equal [2, 1, 3, 1] , number_of_element_in_dice([1, 1, 3 , 4, 4,4, 5])
- 	assert_equal [] , number_of_element_in_dice([])
- 	assert_equal [3] , number_of_element_in_dice([1,1,1]) 	
- 
- end
-  
-
-#   ++++++++++++++++++++++++ KOANS TEST +++++++++++++++++++++
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end
