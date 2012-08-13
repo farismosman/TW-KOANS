@@ -44,11 +44,35 @@ end
 
 def score_per_number(dice, number, score_of_number)
   num = 0
-  dice.each{|d| num +=1 if d == number}  
+  dice.each{|d| num +=1 if d == number}     
   result = num * score_of_number  
+  result = 1000 if num == 3 and  number ==1
+  return result
+end
+
+def  number_of_element_in_dice(dice)
+	
+	dice_uniq= dice.uniq
+	num = []
+	dice_uniq.each{|x| num << dice.count(x) }
+	return num
+
 end
 
 class AboutScoringProject < EdgeCase::Koan
+
+ 
+#    +++++++++++++++++++++++++ OUR TEST ++++++++++++++++++++++
+
+ def test_number_of_element_in_dice
+ 	assert_equal [2, 1, 3, 1] , number_of_element_in_dice([1, 1, 3 , 4, 4,4, 5])
+ 	assert_equal [] , number_of_element_in_dice([])
+ 	assert_equal [3] , number_of_element_in_dice([1,1,1]) 	
+ 
+ end
+  
+
+#   ++++++++++++++++++++++++ KOANS TEST +++++++++++++++++++++
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end
@@ -85,5 +109,6 @@ class AboutScoringProject < EdgeCase::Koan
     assert_equal 250, score([2,5,2,2,3])
     assert_equal 550, score([5,5,5,5])
   end
+  
 
 end
