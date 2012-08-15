@@ -14,8 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 class Proxy
 
-  attr_reader :mess
-  def initialize(target_object)
+   def initialize(target_object)
     @object = target_object
     @msg = []
     # ADD MORE CODE HERE
