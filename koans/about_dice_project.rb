@@ -8,9 +8,7 @@ class DiceSet
   attr_reader :values
   
   def roll(number)
-  	result = []
-  	(1..number).each{|n| result << rand(1..6)}
-  	@values = result
+  	@values =(1..number).map{ rand(1..6) }
   end		
     	
  end
